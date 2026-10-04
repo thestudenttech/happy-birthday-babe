@@ -148,33 +148,24 @@
             border-radius: 2px;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .gallery-item {
-            position: relative;
+        .video-container {
             width: 100%;
-            padding-top: 133%; /* 4:3 aspect ratio */
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+            background-color: #000;
             transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.03);
+        .video-container:hover {
+            transform: scale(1.02);
         }
 
-        .gallery-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .video-container video {
             width: 100%;
-            height: 100%;
+            display: block;
+            max-height: 350px;
             object-fit: cover;
         }
 
@@ -203,7 +194,6 @@
     <div class="audio-player">
         <button class="music-btn" id="playPauseBtn">▶</button>
         <span class="audio-text" id="trackLabel">Play Music</span>
-        <!-- Matches your exact uploaded audio track filename -->
         <audio id="bgMusic" src="WhatsApp%20Audio%202026-10-04%20at%2011.03.18.mpeg" loop></audio>
     </div>
 
@@ -213,15 +203,12 @@
         <div class="subtitle">To My Favorite Person</div>
         <div class="decorative-border"></div>
 
-        <div class="gallery">
-            <div class="gallery-item">
-                <!-- Matches your first uploaded photo -->
-                <img src="KRST0699.JPG" alt="Nomfundo photo 1">
-            </div>
-            <div class="gallery-item">
-                <!-- Matches your second uploaded photo -->
-                <img src="VZIT6677.JPG" alt="Nomfundo photo 2">
-            </div>
+        <!-- Video Player Section -->
+        <div class="video-container">
+            <video controls>
+                <source src="birthday_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
         
         <div class="message">
