@@ -23,7 +23,6 @@
             position: relative;
         }
 
-        /* Floating Hearts Container */
         #hearts-container {
             position: fixed;
             top: 0;
@@ -61,7 +60,6 @@
             }
         }
 
-        /* Music Controls */
         .audio-player {
             position: absolute;
             top: 20px;
@@ -102,7 +100,6 @@
             font-weight: 600;
         }
 
-        /* Card Container */
         .card {
             background: rgba(255, 255, 255, 0.95);
             padding: 40px 30px;
@@ -151,10 +148,9 @@
             border-radius: 2px;
         }
 
-        /* Responsive Photo Gallery */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px;
             margin-bottom: 25px;
         }
@@ -167,18 +163,6 @@
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease;
-            background-color: #f0f2f5; /* Fallback skeleton layout */
-        }
-
-        .gallery-item::before {
-            content: "📸 Photo";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #aaa;
-            font-size: 0.9rem;
-            z-index: 1;
         }
 
         .gallery-item:hover {
@@ -192,10 +176,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: 2;
         }
 
-        /* Message Layout */
         .message {
             color: #555;
             line-height: 1.7;
@@ -216,15 +198,13 @@
 </head>
 <body>
 
-    <!-- Dynamic Floating Hearts Layer -->
     <div id="hearts-container"></div>
 
-    <!-- Background Audio Controls -->
     <div class="audio-player">
         <button class="music-btn" id="playPauseBtn">▶</button>
         <span class="audio-text" id="trackLabel">Play Music</span>
-        <!-- Swap music.mp3 with your actual audio file url or pathway -->
-        <audio id="bgMusic" src="music.mp3" loop></audio>
+        <!-- Matches your exact uploaded audio track filename -->
+        <audio id="bgMusic" src="WhatsApp%20Audio%202026-10-04%20at%2011.03.18.mpeg" loop></audio>
     </div>
 
     <div class="card">
@@ -233,24 +213,17 @@
         <div class="subtitle">To My Favorite Person</div>
         <div class="decorative-border"></div>
 
-        <!-- Photo Gallery Section -->
         <div class="gallery">
             <div class="gallery-item">
-                <!-- Keep filenames exactly matching local project configurations -->
-                <img src="image_3.png" alt="Nomfundo photo 1" onerror="this.style.display='none'">
+                <!-- Matches your first uploaded photo -->
+                <img src="KRST0699.JPG" alt="Nomfundo photo 1">
             </div>
             <div class="gallery-item">
-                <img src="image_4.png" alt="Nomfundo photo 2" onerror="this.style.display='none'">
-            </div>
-            <div class="gallery-item">
-                <img src="image.png" alt="Ntando photo 1" onerror="this.style.display='none'">
-            </div>
-            <div class="gallery-item">
-                <img src="image_2.png" alt="Ntando photo 2" onerror="this.style.display='none'">
+                <!-- Matches your second uploaded photo -->
+                <img src="VZIT6677.JPG" alt="Nomfundo photo 2">
             </div>
         </div>
         
-        <!-- Personalized Longer Message -->
         <div class="message">
             <p>Today is all about celebrating you and the incredible energy, joy, and light you bring into my life every single day.</p>
             <p>You have an amazing way of making everything brighter around you. Thank you for the endless support, the deep laughs, and for simply being the wonderful soul you are.</p>
@@ -264,7 +237,6 @@
     </div>
 
     <script>
-        // Floating Hearts Generation
         const container = document.getElementById('hearts-container');
         const heartIcons = ['❤️', '💖', '💕', '💗'];
         
@@ -272,7 +244,6 @@
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
             
-            // Randomize styling properties natively
             const leftPos = Math.random() * 100;
             const duration = 4 + Math.random() * 5;
             const opacity = 0.3 + Math.random() * 0.5;
@@ -285,16 +256,13 @@
             
             container.appendChild(heart);
             
-            // Garbage collection clean up
             setTimeout(() => {
                 heart.remove();
             }, duration * 1000);
         }
 
-        // Spawn a new heart dynamically every half second
         setInterval(createHeart, 500);
 
-        // Music Player Toggle Logic
         const music = document.getElementById('bgMusic');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const trackLabel = document.getElementById('trackLabel');
@@ -305,8 +273,7 @@
                     playPauseBtn.textContent = '⏸';
                     trackLabel.textContent = 'Playing Music';
                 }).catch(err => {
-                    console.log("Audio file missing or blocked by browser user interaction policy:", err);
-                    alert("Add a valid 'music.mp3' file to your path to play music!");
+                    console.log("Playback error:", err);
                 });
             } else {
                 music.pause();
