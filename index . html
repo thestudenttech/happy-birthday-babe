@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Nomfundo! ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Container */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -20px;
+            color: rgba(255, 75, 43, 0.6);
+            font-size: 20px;
+            animation: floatUp var(--duration) ease-in-out infinite;
+            left: var(--left);
+            opacity: var(--opacity);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: var(--opacity);
+            }
+            90% {
+                opacity: var(--opacity);
+            }
+            100% {
+                transform: translateY(-105vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music Controls */
+        .audio-player {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 8px 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-btn {
+            background: #ff4b2b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .music-btn:hover {
+            background: #ff416c;
+        }
+
+        .audio-text {
+            font-size: 0.8rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Card Container */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 5;
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            color: #ff4b2b;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .decorative-border {
+            height: 4px;
+            width: 60px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            margin: 0 auto 25px auto;
+            border-radius: 2px;
+        }
+
+        /* Responsive Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            padding-top: 133%; /* 4:3 aspect ratio */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            background-color: #f0f2f5; /* Fallback skeleton layout */
+        }
+
+        .gallery-item::before {
+            content: "📸 Photo";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #aaa;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        /* Message Layout */
+        .message {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Floating Hearts Layer -->
+    <div id="hearts-container"></div>
+
+    <!-- Background Audio Controls -->
+    <div class="audio-player">
+        <button class="music-btn" id="playPauseBtn">▶</button>
+        <span class="audio-text" id="trackLabel">Play Music</span>
+        <!-- Swap music.mp3 with your actual audio file url or pathway -->
+        <audio id="bgMusic" src="music.mp3" loop></audio>
+    </div>
+
+    <div class="card">
+        <div class="heart-icon">❤️</div>
+        <h1>Happy Birthday, Nomfundo!</h1>
+        <div class="subtitle">To My Favorite Person</div>
+        <div class="decorative-border"></div>
+
+        <!-- Photo Gallery Section -->
+        <div class="gallery">
+            <div class="gallery-item">
+                <!-- Keep filenames exactly matching local project configurations -->
+                <img src="image_3.png" alt="Nomfundo photo 1" onerror="this.style.display='none'">
+            </div>
+            <div class="gallery-item">
+                <img src="image_4.png" alt="Nomfundo photo 2" onerror="this.style.display='none'">
+            </div>
+            <div class="gallery-item">
+                <img src="image.png" alt="Ntando photo 1" onerror="this.style.display='none'">
+            </div>
+            <div class="gallery-item">
+                <img src="image_2.png" alt="Ntando photo 2" onerror="this.style.display='none'">
+            </div>
+        </div>
+        
+        <!-- Personalized Longer Message -->
+        <div class="message">
+            <p>Today is all about celebrating you and the incredible energy, joy, and light you bring into my life every single day.</p>
+            <p>You have an amazing way of making everything brighter around you. Thank you for the endless support, the deep laughs, and for simply being the wonderful soul you are.</p>
+            <p>I hope your day is filled with pure happiness, perfect moments, and everything that makes you smile. You deserve the absolute best today and always.</p>
+        </div>
+
+        <div class="footer">
+            With all my love,<br>
+            Ntando 💕
+        </div>
+    </div>
+
+    <script>
+        // Floating Hearts Generation
+        const container = document.getElementById('hearts-container');
+        const heartIcons = ['❤️', '💖', '💕', '💗'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            // Randomize styling properties natively
+            const leftPos = Math.random() * 100;
+            const duration = 4 + Math.random() * 5;
+            const opacity = 0.3 + Math.random() * 0.5;
+            const randomIcon = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            
+            heart.innerHTML = randomIcon;
+            heart.style.setProperty('--left', leftPos + '%');
+            heart.style.setProperty('--duration', duration + 's');
+            heart.style.setProperty('--opacity', opacity);
+            
+            container.appendChild(heart);
+            
+            // Garbage collection clean up
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Spawn a new heart dynamically every half second
+        setInterval(createHeart, 500);
+
+        // Music Player Toggle Logic
+        const music = document.getElementById('bgMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const trackLabel = document.getElementById('trackLabel');
+
+        playPauseBtn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play().then(() => {
+                    playPauseBtn.textContent = '⏸';
+                    trackLabel.textContent = 'Playing Music';
+                }).catch(err => {
+                    console.log("Audio file missing or blocked by browser user interaction policy:", err);
+                    alert("Add a valid 'music.mp3' file to your path to play music!");
+                });
+            } else {
+                music.pause();
+                playPauseBtn.textContent = '▶';
+                trackLabel.textContent = 'Music Paused';
+            }
+        });
+    </script>
+</body>
+</html>
