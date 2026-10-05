@@ -148,25 +148,31 @@
             border-radius: 2px;
         }
 
-        /* Responsive Vertical/Widescreen Video Container */
-        .video-container {
-            position: relative;
-            padding-bottom: 125%; /* Perfect vertical aspect ratio for YouTube Shorts */
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        /* Stylized Emoji Container replacing the video player */
+        .emoji-display-container {
+            background: linear-gradient(135deg, #fff5f5 0%, #fff0f5 100%);
+            border: 2px dashed #fecfef;
+            border-radius: 15px;
+            padding: 25px 15px;
             margin-bottom: 25px;
-            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .emoji-display-container:hover {
+            transform: scale(1.03);
+            border-color: #ff9a9e;
+        }
+
+        .birthday-emojis {
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            line-height: 1;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.06));
         }
 
         .message {
@@ -203,13 +209,9 @@
         <div class="subtitle">To My Favorite Person</div>
         <div class="decorative-border"></div>
 
-        <!-- Optimized YouTube Shorts Embed Section -->
-        <div class="video-container">
-            <iframe 
-                src="https://youtube.com" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
+        <!-- Custom Emoji Display Block -->
+        <div class="emoji-display-container">
+            <span class="birthday-emojis">🫶🏻❤️🫂💍🍰🍑</span>
         </div>
         
         <div class="message">
