@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Nomfundo my angel! ❤️</title>
+    <title>Happy Birthday, Nomfundo! ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -148,25 +148,25 @@
             border-radius: 2px;
         }
 
+        /* Responsive Vertical/Widescreen Video Container */
         .video-container {
-            width: 100%;
-            border-radius: 12px;
+            position: relative;
+            padding-bottom: 125%; /* Perfect vertical aspect ratio for YouTube Shorts */
+            height: 0;
             overflow: hidden;
+            border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             margin-bottom: 25px;
             background-color: #000;
-            transition: transform 0.3s ease;
         }
 
-        .video-container:hover {
-            transform: scale(1.02);
-        }
-
-        .video-container video {
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            display: block;
-            max-height: 350px;
-            object-fit: cover;
+            height: 100%;
+            border: 0;
         }
 
         .message {
@@ -203,11 +203,10 @@
         <div class="subtitle">To My Favorite Person</div>
         <div class="decorative-border"></div>
 
-        <!-- High-Performance Embed Player Section -->
-        <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-height: 350px;">
+        <!-- Optimized YouTube Shorts Embed Section -->
+        <div class="video-container">
             <iframe 
-                src="YOUR_UNLISTED_EMBED_LINK_HERE" 
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                src="https://youtube.com" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen>
             </iframe>
