@@ -148,7 +148,7 @@
             border-radius: 2px;
         }
 
-        /* Stylized Emoji Container replacing the video player */
+        /* Stylized Emoji Container */
         .emoji-display-container {
             background: linear-gradient(135deg, #fff5f5 0%, #fff0f5 100%);
             border: 2px dashed #fecfef;
@@ -257,13 +257,32 @@
         const playPauseBtn = document.getElementById('playPauseBtn');
         const trackLabel = document.getElementById('trackLabel');
 
-        playPauseBtn.addEventListener('click', () => {
+        // Function to start music playback safely
+        function startMusic() {
             if (music.paused) {
                 music.play().then(() => {
                     playPauseBtn.textContent = '⏸';
                     trackLabel.textContent = 'Playing Music';
+                    // Remove the document event listener once music starts playing successfully
+                    document.removeEventListener('click', startMusic);
+                    document.removeEventListener('touchstart', startMusic);
                 }).catch(err => {
-                    console.log("Playback error:", err);
+                    console.log("Autoplay waiting for user gesture:", err);
+                });
+            }
+        }
+
+        // Listen for the very first user interaction (click or mobile touch) anywhere on the page
+        document.addEventListener('click', startMusic);
+        document.addEventListener('touchstart', startMusic);
+
+        // Standard Button Toggle manual override
+        playPauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevents triggering the global body actions twice
+            if (music.paused) {
+                music.play().then(() => {
+                    playPauseBtn.textContent = '⏸';
+                    trackLabel.textContent = 'Playing Music';
                 });
             } else {
                 music.pause();
@@ -274,3 +293,4 @@
     </script>
 </body>
 </html>
+Y
